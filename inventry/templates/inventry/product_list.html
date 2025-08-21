@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }} — Inventory{% endblock %}
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 m-0">{{ title }}</h1>
+    <div class="text-muted">
+      <span class="badge bg-success">In‑Stock: {{ in_stock_count }}</span>
+      <span class="badge bg-danger ms-2">Out‑of‑Stock: {{ out_stock_count }}</span>
+    </div>
+  </div>
+
+  {% if products %}
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th class="text-end">Price</th>
+            <th class="text-end">Qty</th>
+            <th>In Stock?</th>
+            <th class="text-end">Total Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in products %}
+          <tr>
+            <td>{{ p.name }}</td>
+            <td class="text-end">₹{{ p.price }}</td>
+            <td class="text-end">{{ p.quantity }}</td>
+            <td>
+              {% if p.in_stock %}
+                <span class="badge bg-success">Yes</span>
+              {% else %}
+                <span class="badge bg-danger">No</span>
+              {% endif %}
+            </td>
+            <td class="text-end">₹{{ p.total_value }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="alert alert-info">No products found. Add some via the <a href="/admin/">Admin</a>.</div>
+  {% endif %}
+{% endblock %}
