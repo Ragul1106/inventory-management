@@ -83,12 +83,12 @@ ASGI_APPLICATION = 'inventry_project.asgi.application'
 DB_ENGINE = os.environ.get('DB_ENGINE', '').lower().strip()
 
 if DB_ENGINE == 'mysql':
-    # Prefer mysqlclient; allow PyMySQL as fallback if installed
+
     try:
-        import MySQLdb  # noqa: F401
+        import MySQLdb  
     except Exception:
         try:
-            import pymysql  # type: ignore
+            import pymysql  
             pymysql.install_as_MySQLdb()
         except Exception:
             pass
@@ -108,7 +108,6 @@ if DB_ENGINE == 'mysql':
         }
     }
 else:
-    # Default: SQLite
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
