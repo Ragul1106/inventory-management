@@ -25,7 +25,9 @@ load_dotenv(BASE_DIR / '.env')
 # SECURITY WARNING: keep the secret key used in production secret!
 DEBUG = os.environ.get('DEBUG', '1') == '1'
 SECRET_KEY = 'django-insecure-q0@_xkzdhok5&388i(q8is(_t#tp68*)0$0il6%)#r72a^*lft'
-ALLOWED_HOSTS = [h.strip() for h in os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',') if h.strip()]
+ALLOWED_HOSTS = [
+    h.strip() for h in os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',') if h.strip()
+]
 CSRF_TRUSTED_ORIGINS = [o.strip() for o in os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(',') if o.strip()]
 
 
